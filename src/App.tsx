@@ -20,7 +20,7 @@ function App() {
   }, [generate]);
 
   return (
-    <div className="flex flex-col max-w-xs m-4">
+    <div className="flex flex-col max-w-md m-4">
       <h1 className="text-3xl font-bold text-red-500">Password Generator</h1>
       <button
         onClick={() => {
