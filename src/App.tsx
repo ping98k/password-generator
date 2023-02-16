@@ -25,14 +25,30 @@ function App() {
   return (
     <div className="flex flex-col max-w-md m-4">
       <h1 className="text-3xl font-bold text-red-500">Password Generator</h1>
-      <button
-        onClick={() => {
-          setIsBase64(!isBase64);
-        }}
-        className="flex-1 rounded-lg bg-red-500 border-red-500 p-3 border-2 text-white text-center my-2"
-      >
-        Mode {isBase64 ? "Base64" : "Password"}
-      </button>
+      <div className="flex flex-row pt-2">
+        <button
+          onClick={() => {
+            setIsBase64(!isBase64);
+          }}
+          className={`${
+            isBase64 ? "bg-red-300 border-red-300" : "bg-red-500 border-red-500"
+          } flex-1 rounded-lg  p-3 border-2 text-white text-center my-2 mr-2`}
+        >
+          Password
+        </button>
+        <button
+          onClick={() => {
+            setIsBase64(!isBase64);
+          }}
+          className={`${
+            !isBase64
+              ? "bg-red-300 border-red-300"
+              : "bg-red-500 border-red-500"
+          } flex-1 rounded-lg  p-3 border-2 text-white text-center my-2`}
+        >
+          Base64
+        </button>
+      </div>
       <div className="flex flex-row align-middle my-2">
         <div className="mr-2">{length}</div>
         <input
