@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { generatePassword, generateBase64 } from "./functions";
 import "./App.css";
 
@@ -6,6 +6,8 @@ function App() {
   const [isBase64, setIsBase64] = useState(false);
   const [length, setLength] = useState(8);
   const [pass, setPass] = useState("");
+  const [copy, setCopy] = useState("Copy");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const generate = useCallback(() => {
     if (isBase64) {
@@ -43,6 +45,7 @@ function App() {
         ></input>
       </div>
       <textarea
+        ref={inputRef}
         value={pass}
         onChange={() => {}}
         rows={5}
@@ -55,8 +58,24 @@ function App() {
         >
           Generate
         </button>
-        <button className="flex-1 rounded-lg bg-red-500 border-red-500 p-3 border-2 text-white text-center my-2">
-          Copy
+        <button
+          onClick={() => {
+            if (navigator.clipboard) {
+              navigator.clipboard
+                .writeText(pass)
+                .then(() => {
+                  setCopy("Copied!");
+                })
+                .catch(() => {
+                  setCopy("Error!");
+                });
+            } else {
+              setCopy("Error!");
+            }
+          }}
+          className="flex-1 rounded-lg bg-red-500 border-red-500 p-3 border-2 text-white text-center my-2"
+        >
+          {copy}
         </button>
       </div>
     </div>
