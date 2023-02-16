@@ -15,6 +15,7 @@ function App() {
     } else {
       setPass(generatePassword(length));
     }
+    setCopy("Copy");
   }, [length, isBase64]);
 
   useEffect(() => {
